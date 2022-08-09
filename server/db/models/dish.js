@@ -1,19 +1,18 @@
-'use strict';
 const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Food extends Model {
+  class Dish extends Model {
     static associate({Check}) {
-      this.belongsTo(Check, { foreignKey: 'foodId' });
+      this.hasMany(Check, { foreignKey: 'dishId' });
     }
   }
-  Food.init({
+  Dish.init({
     name: DataTypes.STRING,
     cost: DataTypes.INTEGER
   }, {
     sequelize,
-    modelName: 'Food',
+    modelName: 'Dish',
   });
-  return Food;
+  return Dish;
 };

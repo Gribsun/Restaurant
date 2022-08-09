@@ -1,17 +1,16 @@
-'use strict';
 const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Check extends Model {
-    static associate({Table, Food}) {
-      this.hasMany(Table, { foreignKey: 'tableId' });
-      this.hasMany(Food, { foreignKey: 'foodId' });
+    static associate({Table, Dish}) {
+      this.belongsTo(Table, { foreignKey: 'tableId' });
+      this.belongsTo(Dish, { foreignKey: 'dishId' });
     }
   }
   Check.init({
     tableId: DataTypes.INTEGER,
-    foodId: DataTypes.INTEGER,
+    dishId: DataTypes.INTEGER,
     quantity: DataTypes.INTEGER
   }, {
     sequelize,

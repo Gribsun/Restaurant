@@ -1,0 +1,46 @@
+.check {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    border: 1px dashed black;
+}
+
+.totalCheck {
+    align-self: flex-end;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px 10px 10px 0;
+}
+
+.title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 20px;
+}
+
+.text {
+    width: 200px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-bottom: 1px dashed black;
+}
+
+.text:first-child{
+    width: 300px;
+}
+
+
+.btnBack {
+    margin: 5px auto 15px auto;
+    width: 160px;
+    height: 50px;
+    font-size: 20px;
+    padding: 3px;
+    background-color: #e9e9e9;
+    border: 1px solid black;
+}

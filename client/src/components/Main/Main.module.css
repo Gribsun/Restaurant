@@ -1,0 +1,14 @@
+.restaurant {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 100px 0 0 0;
+    font-size: 30px;
+}
+
+.oneTable {
+    margin: 10px;
+    background-color: antiquewhite;
+    border: 1px solid black;
+}

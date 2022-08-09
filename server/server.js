@@ -1,13 +1,13 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const session = require("express-session");
-const FileStore = require("session-file-store")(session);
 const { sequelize } = require("./db/models");
 
 const app = express();
 
-// const contactsRouter = require("./routes/contacts.router");
+const checkRouter = require('./routes/check.router')
+const tableRouter = require('./routes/table.router')
+const dishRouter = require('./routes/dish.router')
 
 app.use('/static', express.static(__dirname + '/public'));
 
@@ -20,28 +20,12 @@ app.use(
 
 const PORT = process.env.PORT || 3002;
 
-const sessionConfig = {
-    store: new FileStore(),
-    key: process.env.COOKIE_NAME,
-    secret: process.env.SECRET,
-    resave: false,
-    saveUninitialized: false,
-    httpOnly: true,
-    cookie: { expires: 24 * 60 * 60e3 },
-};
-
-app.use(session(sessionConfig));
-app.use((req, res, next) => {
-    if (req.session.userId) {
-        res.locals.userId = req.session.userId;
-        res.locals.userName = req.session.userName;
-    }
-    next();
-});
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// app.use("/contacts", contactsRouter);
+app.use("/check", checkRouter);
+app.use("/tables", tableRouter);
+app.use("/dishes", dishRouter);
 
 app.listen(PORT, async () => {
     try {
