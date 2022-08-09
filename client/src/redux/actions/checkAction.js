@@ -31,14 +31,14 @@ export const addDish = (id, count, tableId) => async (dispatch) => {
     }
 };
 
-export const deleteDish = (id) => async (dispatch) => {
+export const deleteDish = (tableId) => async (dispatch) => {
     try {
-        await axios.delete(`http://localhost:3010/check/${id}`,
+        await axios.delete(`http://localhost:3010/check/${tableId}`,
             {withCredentials: true}
         );
         dispatch({
             type: 'DELETE_DISH',
-            payload: id,
+            payload: tableId,
         });
     } catch (err) {
         console.log(err);

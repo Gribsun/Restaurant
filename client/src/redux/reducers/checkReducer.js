@@ -7,7 +7,7 @@ export function checkReducer(state = [], action) {
         case "EDIT_DISH":
             return state.map(item => item.id === action.payload.id ? action.payload : item);
         case "DELETE_DISH":
-            return state.filter(item => item.id !== action.payload);
+            return [];
         default:
             return state;
     }

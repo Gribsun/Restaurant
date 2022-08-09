@@ -2,7 +2,7 @@ import React, {useEffect, useState, useMemo} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate, useParams} from "react-router-dom";
 import style from './Check.module.css';
-import {getCheck} from "../../redux/actions/checkAction";
+import {deleteDish, getCheck} from "../../redux/actions/checkAction";
 import OnePositionInCheck from "../OnePositionInCheck/OnePositionInCheck";
 import {getDishes} from "../../redux/actions/dishAction";
 import Loader from "../Loader/Loader";
@@ -44,6 +44,10 @@ function Check() {
 
     const totalCheck = totalAmount(check, dishes);
 
+    const delHandler = () => {
+        dispatch(deleteDish(tableId));
+    }
+
     function timer() {
         setTimeout(() => {
             setLoad(true);
@@ -62,9 +66,18 @@ function Check() {
                     </div>
                     {check.map(item => <OnePositionInCheck key={item.id} dishId={item.dishId} quantity={item.quantity}/>)}
                     <p className={style.totalCheck}>Общий счет: {totalCheck}р.</p>
-                    <button onClick={() => navigate(`/table/${tableId}`)} className={style.btnBack}>
-                        Назад
-                    </button>
+                    <div className={style.btns}>
+                        <button onClick={delHandler} className={style.btnBack}>
+                            Очистить
+                        </button>
+                        <button className={style.btnBack}>
+                            Печать
+                        </button>
+                        <button onClick={() => navigate(`/table/${tableId}`)} className={style.btnBack}>
+                            Назад
+                        </button>
+                    </div>
+
                 </div>
             : <Loader />}
         </>

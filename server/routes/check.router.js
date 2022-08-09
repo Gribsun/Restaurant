@@ -59,9 +59,9 @@ router
     })
     .delete(async (req, res) => {
         try {
-            const {id} = req.params;
+            const {tableId} = req.params;
 
-            await Check.destroy({ where: { id } });
+            await Check.destroy({ where: { tableId } });
             await res.sendStatus(200);
 
         } catch (err) {
