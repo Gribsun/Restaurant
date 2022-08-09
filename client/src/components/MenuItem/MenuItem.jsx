@@ -31,6 +31,7 @@ function MenuItem({id, name,cost}) {
         event.preventDefault();
         if (count !== 0) {
             dispatch(addDish(id, count, tableId))
+            setCount(0);
         }
     }
 
